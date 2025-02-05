@@ -1,4 +1,4 @@
-package com.scm;
+package com.sandeep.phonebook;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

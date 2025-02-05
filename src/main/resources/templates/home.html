@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en" layout:decorate="~{fragments/base_layout}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <title>Home page</title>
 </head>
 <body>
-    <h1>this is my first home page </h1>
-    <h1 data-th-text=${name}></h1>
+<div layout:fragment="body" class="border">
+  
+</div>
+<script>
+  console.log("Home page");
+</script>
 </body>
 </html>
