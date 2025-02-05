@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en" layout:decorate="~{fragments/base_layout}">
+<head>
+    <title>About Page</title>
+</head>
+<body>
+<th:block layout:fragment="body">
+    <div id="content">
+        <h1>Welcome to about page</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
+            ratione!
+        </p>
+    </div>
+    <script>
+        console.log("about page");
+    </script>
+    <script>
+        console.log("second about page script");
+    </script>
+</th:block>
+</body>
+</html>
