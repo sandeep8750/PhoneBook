@@ -1,4 +1,4 @@
-package com.sandeep.ContactManger.config;
+package com.sandeep.phonebook.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,13 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Autowired
-    private SecurityCustomUserDetailService userDetailService;
+    private SecurityCustomUserDetailService customUserDetailService;
 
     @Autowired
-    private  OAuthAuthenticationSuccessHandler authAuthenticationSuccessHandler;
+    private  BCryptPasswordEncoder passwordEncoder;
+
+//    @Autowired
+//    private  OAuthAuthenticationSuccessHandler authAuthenticationSuccessHandler;
 
 
     // configuration of authentication provider for spring security
@@ -29,17 +32,13 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         // user detail service ka object:
-        daoAuthenticationProvider.setUserDetailsService(userDetailService);
+        daoAuthenticationProvider.setUserDetailsService(customUserDetailService);
         // password encoder ka object
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
 
         return daoAuthenticationProvider;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -56,24 +55,24 @@ public class SecurityConfig {
             formLogin.loginProcessingUrl("/authenticate");
             formLogin.successForwardUrl("/user/dashboard");
             formLogin.failureForwardUrl("/login?error=true");
-           // formLogin.defaultSuccessUrl("/home");
+            // formLogin.defaultSuccessUrl("/home");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
         });
 
-        httpSecurity.csrf(AbstractHttpConfigurer::disable);
-        // oauth configurations
-
-        httpSecurity.oauth2Login(oauth -> {
-            oauth.loginPage("/login");
-            oauth.successHandler(authAuthenticationSuccessHandler);
-        });
-
-        httpSecurity.logout(logoutForm -> {
-            logoutForm.logoutUrl("/logout");
-            logoutForm.logoutSuccessUrl("/login?logout=true");
-
-        });
+//        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+//        // oauth configurations
+//
+//        httpSecurity.oauth2Login(oauth -> {
+//            oauth.loginPage("/login");
+//            oauth.successHandler(authAuthenticationSuccessHandler);
+//        });
+//
+//        httpSecurity.logout(logoutForm -> {
+//            logoutForm.logoutUrl("/logout");
+//            logoutForm.logoutSuccessUrl("/login?logout=true");
+//
+//        });
 
         return httpSecurity.build();
 
