@@ -1,15 +1,13 @@
 package com.sandeep.phonebook.serviceImpl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.sandeep.phonebook.entities.UserEntity;
 import com.sandeep.phonebook.helper.ConstantUtils;
 import com.sandeep.phonebook.helper.ResourceNotFoundException;
-import com.sandeep.phonebook.entities.UserEntity;
 import com.sandeep.phonebook.repositories.IUserRepository;
 import com.sandeep.phonebook.services.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +19,8 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IUserRepository userRepository;
 
-	// @Autowired
-	// private BCryptPasswordEncoder passwordEncoder;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public UserEntity saveUser(UserEntity user) {
@@ -31,7 +29,7 @@ public class UserServiceImpl implements IUserService {
 		user.setUserId(userId);
 
 		// password encode
-		//user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
 		// set user role
 		 user.setRoleList(List.of(ConstantUtils.ROLE_USER));

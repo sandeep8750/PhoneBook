@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<th:block  layout:fragment="body">
+<th:block layout:fragment="body">
     <div id="content">
         <div class="grid grid-cols-12 mt-4">
             <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
@@ -31,7 +31,8 @@
                     </p>
 
                     <!-- this is  form -->
-                    <form data-th-action="@{'/do-register'}" method="post" data-th-object="${userFormReqDTO}" class="mt-5"
+                    <form data-th-action="@{'/do-register'}" method="post" data-th-object="${userFormReqDTO}"
+                          class="mt-5"
                           novalidate>
                         <!-- name  -->
 
@@ -80,6 +81,17 @@
                             <p data-th-if="${#fields.hasErrors('phoneNumber')}" data-th-errors="*{phoneNumber}"
                                class="text-red-600 px-1 py-2"></p>
                         </div>
+<!--                        &lt;!&ndash;                        Profile image&ndash;&gt;-->
+<!--                        <div class="mb-3">-->
+<!--                            <label for="phone"-->
+<!--                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Photo</label>-->
+<!--                            <input data-th-field="*{profilePicLink}" type="file" id="profilePicLink"-->
+<!--                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"-->
+<!--                            />-->
+
+<!--                            <p data-th-if="${#fields.hasErrors('profilePicLink')}" data-th-errors="*{profilePicLink}"-->
+<!--                               class="text-red-600 px-1 py-2"></p>-->
+<!--                        </div>-->
 
                         <!-- about textarea -->
                         <div class="mb-3">

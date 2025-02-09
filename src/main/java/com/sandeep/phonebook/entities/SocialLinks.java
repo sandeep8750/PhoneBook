@@ -23,6 +23,6 @@ public class SocialLinks {
 	private String title;
 	
 	@ManyToOne
-	private Contact contact;
+	private ContactEntity contact;
 	
 }

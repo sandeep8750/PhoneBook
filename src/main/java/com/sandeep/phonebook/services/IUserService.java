@@ -1,9 +1,9 @@
 package com.sandeep.phonebook.services;
 
+import com.sandeep.phonebook.entities.UserEntity;
+
 import java.util.List;
 import java.util.Optional;
-
-import com.sandeep.phonebook.entities.UserEntity;
 
 public interface IUserService {
 

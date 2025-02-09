@@ -1,9 +1,8 @@
 package com.sandeep.phonebook.repositories;
 
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.sandeep.phonebook.entities.UserEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 

@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html
-        lang="en"
-        th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
-        xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="en" layout:decorate="~{fragments/base_layout}">
 <head>
     <title>Add Contact</title>
 </head>
 <body>
-<div id="content">
+<div id="content" layout:fragment="body">
     <!-- sidebar -->
-
-
-
 
     <div class="sm:pl-64 pt-20" style="height: 800px">
         <div class="grid grid-cols-12">
@@ -25,7 +21,8 @@
                 <div
                         class="card block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                 >
-                    <div data-th-replace="message::messagebox"></div>
+                
+                    <div data-th-replace="~{alert/message::messagebox}"></div>
 
                     <h1 class="text-2xl font-semibold">Add New Contact</h1>
                     <p class="text-gray-500">
@@ -68,7 +65,7 @@
                         <!-- email form -->
                         <div class="mb-3">
                             <label
-                                    for="input-group-1"
+                                    for="input-group-2"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >Contact Email</label
                             >

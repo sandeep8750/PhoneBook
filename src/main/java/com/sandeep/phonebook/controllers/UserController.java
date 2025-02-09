@@ -1,5 +1,6 @@
 package com.sandeep.phonebook.controllers;
 
+import com.sandeep.phonebook.services.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties.Authentication;
@@ -7,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.sandeep.phonebook.services.IUserService;
 
 @Controller
 @RequestMapping("/user")

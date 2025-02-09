@@ -1,22 +1,24 @@
 package com.sandeep.phonebook.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-
-
 import com.sandeep.phonebook.entities.UserEntity;
 import com.sandeep.phonebook.helper.Color;
 import com.sandeep.phonebook.helper.Message;
 import com.sandeep.phonebook.repositories.IUserRepository;
 import com.sandeep.phonebook.requestDto.UserFormReqDTO;
 import com.sandeep.phonebook.services.IUserService;
-
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.io.IOException;
 
 
 @Controller
@@ -82,7 +84,7 @@ public class PageController {
 
    //  processing register
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
-    public String processRegister(Model model, @Valid @ModelAttribute(name = "userFormReqDTO") UserFormReqDTO userFormReqDTO, BindingResult result, HttpSession session) {
+    public String processRegister(Model model, @Valid @ModelAttribute(name = "userFormReqDTO") UserFormReqDTO userFormReqDTO, BindingResult result, HttpSession session) throws IOException {
 
         Message message;
         
@@ -96,6 +98,7 @@ public class PageController {
         user.setPassword(userFormReqDTO.getPassword());
         user.setAbout(userFormReqDTO.getAbout());
         user.setPhoneNumber(userFormReqDTO.getPhoneNumber());
+
         user.setProfilePicLink("https://previews.123rf.com/images/aquir/aquir1311/aquir131100316/23569861-sample-grunge-red-round-stamp.jpg");
 
         if (!userRepository.existsByEmail(userFormReqDTO.getEmail())) {
