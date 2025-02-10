@@ -250,17 +250,17 @@ public class ContactController {
 
         // process image:
 
-//        if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
-//            logger.info("file is not empty");
-//            String fileName = UUID.randomUUID().toString();
-//            String imageUrl = imageService.uploadImage(contactForm.getContactImage(), fileName);
-//            con.setCloudinaryImagePublicId(fileName);
-//            con.setPicture(imageUrl);
-//            contactForm.setPicture(imageUrl);
-//
-//        } else {
-//            logger.info("file is empty");
-//        }
+        if (contactForm.getContactImage() != null && !contactForm.getContactImage().isEmpty()) {
+            logger.info("file is not empty");
+            String fileName = UUID.randomUUID().toString();
+            String imageUrl = imageService.uploadImage(contactForm.getContactImage(), fileName);
+            con.setCloudinaryImagePublicId(fileName);
+            con.setPicture(imageUrl);
+            contactForm.setPicture(imageUrl);
+
+        } else {
+            logger.info("file is empty");
+        }
 
         var updateCon = contactService.update(con);
         logger.info("updated contact {}", updateCon);
