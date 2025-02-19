@@ -24,10 +24,10 @@
  import java.util.UUID;
 
  @Component
- public class OAuthAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+ public class OAuth2AuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
 
-     Logger logger = LoggerFactory.getLogger(OAuthAuthenticationSuccessHandler.class);
+     Logger logger = LoggerFactory.getLogger(OAuth2AuthenticationSuccessHandler.class);
 
      @Autowired
      private IUserRepository userRepo;

@@ -38,3 +38,13 @@
     cursor: not-allowed;
   }
 }
+
+.swal-confirm-button {
+  background-color: #dc3545 !important; /* Red */
+  color: white !important;
+}
+
+.swal-cancel-button {
+  background-color: #6c757d !important; /* Gray */
+  color: white !important;
+}

@@ -6,14 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -26,8 +23,10 @@ public class SecurityConfig {
     private  BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private  OAuthAuthenticationSuccessHandler authAuthenticationSuccessHandler;
+    private OAuth2AuthenticationSuccessHandler authAuthenticationSuccessHandler;
 
+    @Autowired
+    private customeLoginAuthenticationFailureHandler customeLoginAuthenticationFailureHandler;
 
     // configuration of authentication provider for spring security
     @Bean
@@ -58,12 +57,14 @@ public class SecurityConfig {
             //formLogin.defaultSuccessUrl("/home");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
+            formLogin.failureHandler(customeLoginAuthenticationFailureHandler);
         });
 
         //oauth configurations
         httpSecurity.oauth2Login(oauth2 -> {
             oauth2.loginPage("/login");
             oauth2.successHandler(authAuthenticationSuccessHandler);
+            oauth2.failureHandler(customeLoginAuthenticationFailureHandler);
         });
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);

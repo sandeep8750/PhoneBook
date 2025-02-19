@@ -5,8 +5,8 @@
 <head>
     <title>All Your Contacts</title>
 </head>
-<body>
-<div id="content" layout:fragment="body">
+<body layout:fragment="body">
+<div id="content">
     <!-- sidebar -->
 
     <!-- user is logged in : sidebar -->
@@ -240,7 +240,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
-<script data-th-src="@{'/js/contact.js}"></script>
+<script data-th-src="@{'/js/contacts.js'}"></script>
 <script>
     function exportData() {
       TableToExcel.convert(document.getElementById("contact-table"), {
@@ -250,6 +250,6 @@
         },
       });
     }
-</script>
+    </script>
 </body>
 </html>

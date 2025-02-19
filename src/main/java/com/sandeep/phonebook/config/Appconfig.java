@@ -3,9 +3,9 @@ package com.sandeep.phonebook.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.cloudinary.*;
 import com.cloudinary.utils.ObjectUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class Appconfig {

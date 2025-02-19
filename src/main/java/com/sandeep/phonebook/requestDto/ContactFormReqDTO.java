@@ -1,5 +1,6 @@
 package com.sandeep.phonebook.requestDto;
 
+import com.sandeep.phonebook.validators.ValidFile;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,7 +46,7 @@ public class ContactFormReqDTO {
     // size
     // resolution
 
-    // @ValidFile(message = "Invalid File")
+    @ValidFile(message = "Invalid File")
     private MultipartFile contactImage;
 
     private String picture;

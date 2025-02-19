@@ -219,7 +219,7 @@ public class ContactController {
         contactForm.setWebsiteLink(contact.getWebsiteLink());
         contactForm.setLinkedInLink(contact.getLinkedInLink());
         contactForm.setPicture(contact.getPicture());
-        ;
+
         model.addAttribute("contactForm", contactForm);
         model.addAttribute("contactId", contactId);
 

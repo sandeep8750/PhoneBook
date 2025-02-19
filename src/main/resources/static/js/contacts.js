@@ -78,6 +78,10 @@ async function deleteContact(id) {
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Delete",
+    customClass: {
+      confirmButton: "swal-confirm-button",
+      cancelButton: "swal-cancel-button",
+    },
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
@@ -86,3 +90,5 @@ async function deleteContact(id) {
     }
   });
 }
+
+

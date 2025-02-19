@@ -2,9 +2,14 @@ package com.sandeep.phonebook.serviceImpl;
 
 import com.sandeep.phonebook.entities.UserEntity;
 import com.sandeep.phonebook.helper.ConstantUtils;
+import com.sandeep.phonebook.helper.Helper;
 import com.sandeep.phonebook.helper.ResourceNotFoundException;
 import com.sandeep.phonebook.repositories.IUserRepository;
+import com.sandeep.phonebook.services.IEmailService;
 import com.sandeep.phonebook.services.IUserService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,13 +19,20 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserRepository userRepository;
 
 	@Autowired
+	private IEmailService emailService;
+
+	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+
 
 	@Override
 	public UserEntity saveUser(UserEntity user) {
@@ -34,7 +46,14 @@ public class UserServiceImpl implements IUserService {
 		// set user role
 		 user.setRoleList(List.of(ConstantUtils.ROLE_USER));
 
-		return userRepository.save(user);
+		logger.info("sandeep provider details ===>{}",user.getProvider().toString());
+
+		String emailToken = UUID.randomUUID().toString();
+		user.setEmailToken(emailToken);
+		UserEntity savedUser = userRepository.save(user);
+		String emailLink = Helper.getLinkForEmailVerificatiton(emailToken);
+		emailService.sendEmail(savedUser.getEmail(), "Verify Account : Smart  Contact Manager", emailLink);
+		return savedUser;
 	}
 
 	@Override

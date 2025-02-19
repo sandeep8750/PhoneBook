@@ -46,5 +46,8 @@ public class Helper {
 
     }
 
+    public static String getLinkForEmailVerificatiton(String emailToken) {
+        return  "http://localhost:8099/auth/verify-email?token=" + emailToken;
+    }
 }
 
